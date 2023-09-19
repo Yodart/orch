@@ -1,4 +1,4 @@
-# 🧙🏻 Orch
+# Orch
 
 ![Flutter](https://img.shields.io/badge/Flutter-2.0+-blue.svg)
 ![Pub Version](https://img.shields.io/pub/v/orch)
