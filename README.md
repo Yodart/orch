@@ -4,6 +4,7 @@
 ![Pub Version](https://img.shields.io/pub/v/orch)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
+Orch is a versatile meta-framework designed to streamline data and UI management in Flutter applications. Seamlessly orchestrate data flow, simplify intricate user interfaces, and elevate your productivity. Whether you're building a small project or a large-scale app, Orch empowers you to effortlessly manage data and create polished user experiences, making it an indispensable tool for Flutter developers
 
 **Installation**: Add `orch` to your `pubspec.yaml` file under `dependencies`:
 
