@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:scrumbly/infra/logger/logger.dart';
 
 class CrashlyticsException implements Exception {
   CrashlyticsException(this.runtimeType, this.stackTrace, this.exception) {

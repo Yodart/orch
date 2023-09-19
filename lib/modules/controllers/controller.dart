@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:scrumbly/infra/logger/logger.dart';
 
 abstract class Controller with Disposable {
   Controller() {

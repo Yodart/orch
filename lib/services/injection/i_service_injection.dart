@@ -1,7 +1,5 @@
 // ignore_for_file: one_member_abstracts
 
-import 'package:scrumbly/infra/config/config.dart';
-
 import 'dependency_injector.dart';
 
 abstract class IServiceInjection {

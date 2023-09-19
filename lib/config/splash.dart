@@ -24,7 +24,7 @@ class Splash extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.only(bottom: UIScale.padding.bottom + UIScale.width(5)),
               child: UIText(
-                'Scrumbly LLC',
+                'Orch, Inc.',
                 fontSize: UITextSize.bodyLarge,
               ),
             ),

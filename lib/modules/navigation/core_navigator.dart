@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:scrumbly/infra/logger/logger.dart';
 
 class CoreNavigator {
   CoreNavigator._();

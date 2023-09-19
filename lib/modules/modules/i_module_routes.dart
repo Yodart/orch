@@ -1,7 +1,6 @@
 // ignore_for_file: always_specify_types
 
 import 'package:flutter/material.dart';
-import 'package:scrumbly/infra/logger/logger.dart';
 
 import '../navigation/core_navigator.dart';
 

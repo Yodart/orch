@@ -3,8 +3,6 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:scrumbly/infra/logger/logger.dart';
-import 'package:scrumbly/infra/logger/logger_config.dart';
 
 class CoreRouteObserver extends RouteObserver<PageRoute<dynamic>> {
   CoreRouteObserver._();

@@ -1,8 +1,5 @@
 import 'dart:io';
 
-import 'package:scrumbly/infra/crashlytics/crashlytics.dart';
-import 'package:scrumbly/infra/logger/logger.dart';
-
 class CoreException implements Exception {
   CoreException(this.type, this.stackTrace, this.exception) {
     if (!Platform.environment.containsKey('FLUTTER_TEST')) logError();
