@@ -1,0 +1,20 @@
+name: orch
+description: Pragmatically control if your Dart methods can run or prevent asynchronous methods from running again prior to completion.
+version: 1.0.0
+
+repository: https://github.com/Yodart/orch
+
+environment:
+  sdk: '>=2.19.2 <3.0.0'
+  flutter: '>=1.17.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
