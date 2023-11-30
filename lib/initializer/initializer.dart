@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:orch/orch.dart';
 
-class Initializer extends StatefulWidget {
-  const Initializer({
+import '../modules/navigation/route_observer.dart';
+
+class OrchAppInitializer extends StatefulWidget {
+  const OrchAppInitializer({
     super.key,
     this.navigatorObservers,
-    this.navigatorKey,
     this.title,
     this.contextEnabledInitialization,
     this.initialization,
     this.splash,
+    this.theme,
     this.preRunInitialization,
   });
 
   final String? title;
   final List<NavigatorObserver>? navigatorObservers;
-  final GlobalKey<NavigatorState>? navigatorKey;
   final void Function(BuildContext context)? contextEnabledInitialization;
   final void Function()? initialization;
   final Future<void> Function()? preRunInitialization;
+  final ThemeData? theme;
   final Widget? splash;
 
   Future<void> run() async {
@@ -27,10 +29,10 @@ class Initializer extends StatefulWidget {
   }
 
   @override
-  State<Initializer> createState() => _InitializerState();
+  State<OrchAppInitializer> createState() => _OrchAppInitializerState();
 }
 
-class _InitializerState extends State<Initializer> {
+class _OrchAppInitializerState extends State<OrchAppInitializer> {
   @override
   void initState() {
     super.initState();
@@ -41,9 +43,9 @@ class _InitializerState extends State<Initializer> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: widget.title ?? '',
-      navigatorObservers: widget.navigatorObservers ?? [],
-      navigatorKey: widget.navigatorKey,
-      theme: ThemeData(fontFamily: GoogleFonts.comfortaa().fontFamily),
+      navigatorObservers: [OrchRouteObserver.instance, ...widget.navigatorObservers ?? []],
+      navigatorKey: OrchNavigator.instance.key,
+      theme: widget.theme,
       home: Builder(builder: (BuildContext context) {
         if (widget.contextEnabledInitialization != null) widget.contextEnabledInitialization!(context);
         return widget.splash ?? Container();

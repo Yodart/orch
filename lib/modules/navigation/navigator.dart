@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:orch/orch.dart';
 
-class CoreNavigator {
-  CoreNavigator._();
-  static final CoreNavigator _instance = CoreNavigator._();
-  static CoreNavigator get instance => _instance;
+class OrchNavigator {
+  OrchNavigator._();
+  static final OrchNavigator _instance = OrchNavigator._();
+  static OrchNavigator get instance => _instance;
 
   final GlobalKey<NavigatorState> key = GlobalKey<NavigatorState>();
 
   BuildContext get context {
     final BuildContext? currentContext = key.currentContext;
     if (currentContext == null) {
-      Logger.instance.logHardWarning('Null context');
+      Orch.instance.logger.logHardWarning('Null context');
       throw Exception('Null context');
     }
     return currentContext;

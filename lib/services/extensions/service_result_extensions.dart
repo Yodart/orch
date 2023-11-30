@@ -2,10 +2,10 @@ import 'package:dartz/dartz.dart';
 
 import '../returns/failure.dart';
 
-extension ServiceResultFolding<T> on Either<Failure, T> {
+extension OrchServiceResultFolding<T> on Either<OrchFailure, T> {
   dynamic get result => fold((l) => l, (r) => r);
 }
 
-extension ServiceResultListFolding<T> on Either<Failure, List<T>> {
+extension OrchServiceResultListFolding<T> on Either<OrchFailure, List<T>> {
   List<T> get reduce => fold((l) => [], (r) => r);
 }

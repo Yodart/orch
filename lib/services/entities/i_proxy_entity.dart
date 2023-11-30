@@ -1,7 +1,6 @@
 import '../proxy/proxy.dart';
-import '../consts/consts.dart';
 
-abstract class IProxyEntity<T extends Object> extends Proxy {
+abstract class IOrchProxyEntity<T extends Object> extends OrchProxy {
   T get single;
-  List<T> list({int length = Default_Proxy_Entity_List_Length}) => List<T>.generate(length, (_) => single);
+  List<T> list({int length = 30}) => List<T>.generate(length, (_) => single);
 }

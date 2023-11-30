@@ -1,9 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:orch/orch.dart';
 
-class CrashlyticsException implements Exception {
-  CrashlyticsException(this.runtimeType, this.stackTrace, this.exception) {
+class OrchException implements Exception {
+  OrchException(this.runtimeType, this.stackTrace, this.exception) {
     if (Platform.environment.containsKey('FLUTTER_TEST')) return;
     logError();
     reportError();
@@ -18,11 +19,11 @@ class CrashlyticsException implements Exception {
   String? loggedExceptionDescription() => null;
 
   @nonVirtual
-  void logError() => Logger.instance.logException(
+  void logError() => Orch.instance.logger.logException(
         exception: loggedExceptionTitle(),
         stackTrace: stackTrace,
         description: loggedExceptionDescription(),
       );
 
-  void reportError() {}
+  void reportError() => Orch.instance.crashlytics.report(loggedExceptionTitle(), stackTrace);
 }

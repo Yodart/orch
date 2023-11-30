@@ -2,13 +2,15 @@
 
 import 'dependency_injector.dart';
 
-abstract class IServiceInjection {
-  final DependencyInjector injector = DependencyInjector.instance;
+abstract class IOrchServiceInjection {
+  final OrchDependencyInjector injector = OrchDependencyInjector.instance;
 
   void inject() {
-    Config.instance.env == ConfigEnv.proxy ? injectProxyGateways() : injectGateways();
+    isProxy ? injectProxyGateways() : injectGateways();
     injectServices();
   }
+
+  bool get isProxy;
 
   void injectGateways();
   void injectProxyGateways();

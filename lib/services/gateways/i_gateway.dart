@@ -1,5 +1,5 @@
 import 'i_proxy_gateway.dart';
 
-abstract class IGateway<TGateway extends Object> {
-  IProxyGateway<TGateway> get proxy;
+abstract class IOrchGateway<TGateway extends Object> {
+  IOrchProxyGateway<TGateway> get proxy;
 }

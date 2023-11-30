@@ -1,14 +1,13 @@
 import 'package:flutter/foundation.dart';
 
-class Crashlytics {
-  Crashlytics._();
-  static final Crashlytics _instance = Crashlytics._();
-  static Crashlytics get instance => _instance;
+abstract class IOrchCrashlytics {
+  void report(dynamic exception, StackTrace? stackTrace, {String? label});
+}
 
-  void report(dynamic exception, StackTrace? stackTrace, {String? tag}) {
+class OrchCrashlytics extends IOrchCrashlytics {
+  @override
+  void report(dynamic exception, StackTrace? stackTrace, {String? label}) {
     if (exception == null) return;
-    if (kDebugMode) debugPrintStack(label: tag, stackTrace: stackTrace);
+    if (kDebugMode) debugPrintStack(label: label, stackTrace: stackTrace);
   }
-
-  void init() {}
 }

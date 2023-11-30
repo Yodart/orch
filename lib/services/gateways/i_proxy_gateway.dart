@@ -1,16 +1,15 @@
 // ignore_for_file: file_names
 
 import '../proxy/proxy.dart';
-import '../consts/consts.dart';
 import '../returns/success.dart';
 
-abstract class IProxyGateway<Gateway extends Object> extends Proxy {
+abstract class IOrchProxyGateway<Gateway extends Object> extends OrchProxy {
   Future<T> proxyGatewayRequest<T>(T Function() callback) async {
-    await Future.delayed(Default_Proxy_Gateway_Function_Delay, () {});
+    await Future.delayed(const Duration(milliseconds: 750), () {});
     return callback();
   }
 
-  Future<SSuccess> proxyGatewaySuccessRequest() {
-    return proxyGatewayRequest<SSuccess>(SSuccess.new);
+  Future<OrchSuccess> proxyGatewaySuccessRequest() {
+    return proxyGatewayRequest<OrchSuccess>(OrchSuccess.new);
   }
 }

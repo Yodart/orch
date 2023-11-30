@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
+import 'package:orch/services/returns/failure.dart';
 
-import '../returns/failure.dart';
-
-typedef ServiceResult<T> = Future<Either<Failure, T>>;
+typedef OrchServiceResult<T> = Future<Either<OrchFailure, T>>;

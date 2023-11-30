@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:faker/faker.dart';
 
-class Proxy {
+class OrchProxy {
   int get proxyInt => faker.randomGenerator.integer(9999);
   int proxyInteger([int seed = 20]) => faker.randomGenerator.integer(seed, min: 1);
   double get proxyDouble => faker.randomGenerator.decimal();
@@ -18,8 +18,5 @@ class Proxy {
   String get proxyState => faker.address.state();
   String get proxyAddress => faker.address.streetName();
   String get proxyPhone => faker.phoneNumber.us();
-  String get proxyCuisine {
-    final List<String> cuisines = ['BBQ', 'Italian', 'Japanese', 'Brazillian', 'Mexican', 'New American', 'Mexican'];
-    return cuisines[Random().nextInt(cuisines.length)];
-  }
+  T proxyEnum<T>(List<T> array) => array[Random().nextInt(array.length)];
 }
