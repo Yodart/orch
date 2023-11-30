@@ -9,8 +9,11 @@ class Orch {
   IOrchLogger logger = OrchLogger();
   IOrchCrashlytics crashlytics = OrchCrashlytics();
 
-  void init({
+  void set({
     IOrchLogger? logger,
     IOrchCrashlytics? crashlytics,
-  }) {}
+  }) {
+    this.logger = logger ?? this.logger;
+    this.crashlytics = crashlytics ?? this.crashlytics;
+  }
 }
