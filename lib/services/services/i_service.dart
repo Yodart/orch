@@ -2,6 +2,7 @@
 
 import 'package:dartz/dartz.dart';
 
+import '../../core/orch.dart';
 import '../returns/failure.dart';
 import '../typedefs/service_result.dart';
 
@@ -10,7 +11,8 @@ abstract class IOrchService {
     try {
       final T gatewayResult = await callback();
       return Right(gatewayResult);
-    } on Exception {
+    } catch (exception, stackTrace) {
+      Orch.instance.logger.logException(exception: exception, stackTrace: stackTrace);
       return Left(OrchFailure());
     }
   }
