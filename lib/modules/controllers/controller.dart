@@ -46,10 +46,15 @@ class OrchControllerInstanceInjector<T extends Object> {
 }
 
 class OrchControllerInstance {
-  static T of<T extends OrchController>(T Function() factory, [String? id]) {
+  static T of<T extends OrchController>(T Function()? factory, [String? id]) {
     return OrchDependencyInjector.instance.get<T>(
       instanceName: id,
       ifNotRegistered: () {
+        if (factory == null) {
+          return Orch.instance.logger.logHardWarning(
+            '🧩 ${T.runtimeType} Getter Invoke w/o Factorty Nor an Instance Already Injected',
+          );
+        }
         OrchDependencyInjector.instance.injectSingleton<T>(factory, id);
       },
     );
