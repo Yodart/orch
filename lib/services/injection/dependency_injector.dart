@@ -19,12 +19,12 @@ class OrchDependencyInjector {
   }
 
   void unregister<T extends Object>(T instance, [String? instanceName]) {
-    if (GetIt.I.isRegistered<T>(instanceName: instanceName)) return;
+    if (!GetIt.I.isRegistered<T>(instanceName: instanceName)) return;
     GetIt.I.unregister<T>(instance: instance, instanceName: instanceName);
   }
 
   void reset<T extends Object>(T instance, [String? instanceName]) {
-    if (GetIt.I.isRegistered<T>(instanceName: instanceName)) return;
+    if (!GetIt.I.isRegistered<T>(instanceName: instanceName)) return;
     GetIt.I.resetLazySingleton<T>(instance: instance, instanceName: instanceName);
   }
 }
