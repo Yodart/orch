@@ -1,4 +1,4 @@
-import '../proxy/proxy.dart';
+import 'package:orch/services/proxy/proxy.dart';
 
 abstract class IOrchProxyEntity<T extends Object> extends OrchProxy {
   T get single;

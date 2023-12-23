@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:orch/modules/navigation/route_observer.dart';
 import 'package:orch/orch.dart';
-
-import '../modules/navigation/route_observer.dart';
 
 class OrchAppInitializer extends StatefulWidget {
   const OrchAppInitializer({

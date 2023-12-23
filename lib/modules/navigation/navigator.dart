@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:orch/orch.dart';
+import 'package:orch/core/orch.dart';
+import 'package:orch/services/injection/dependency_injector.dart';
 
 class OrchNavigator {
-  OrchNavigator._();
-  static final OrchNavigator _instance = OrchNavigator._();
-  static OrchNavigator get instance => _instance;
+  static OrchNavigator get instance {
+    return OrchDependencyInjector.instance.get<OrchNavigator>(
+      ifNotRegistered: () => OrchDependencyInjector.instance.injectSingleton<OrchNavigator>(() => OrchNavigator()),
+    );
+  }
 
   final GlobalKey<NavigatorState> key = GlobalKey<NavigatorState>();
 

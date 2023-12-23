@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
-
-import '../returns/failure.dart';
+import 'package:orch/services/returns/failure.dart';
 
 extension OrchServiceResultFolding<T> on Either<OrchFailure, T> {
   dynamic get result => fold((l) => l, (r) => r);

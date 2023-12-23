@@ -1,10 +1,13 @@
-import '../crashlytics/crashlytics.dart';
-import '../logger/logger.dart';
+import 'package:orch/crashlytics/crashlytics.dart';
+import 'package:orch/logger/logger.dart';
+import 'package:orch/services/injection/dependency_injector.dart';
 
 class Orch {
-  Orch._();
-  static final Orch _instance = Orch._();
-  static Orch get instance => _instance;
+  static Orch get instance {
+    return OrchDependencyInjector.instance.get<Orch>(
+      ifNotRegistered: () => OrchDependencyInjector.instance.injectSingleton<Orch>(() => Orch()),
+    );
+  }
 
   IOrchLogger logger = OrchLogger();
   IOrchCrashlytics crashlytics = OrchCrashlytics();

@@ -3,13 +3,17 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-
-import '../../orch.dart';
+import 'package:orch/core/orch.dart';
+import 'package:orch/services/injection/dependency_injector.dart';
 
 class OrchRouteObserver extends RouteObserver<PageRoute<dynamic>> {
-  OrchRouteObserver._();
-  static final OrchRouteObserver _instance = OrchRouteObserver._();
-  static OrchRouteObserver get instance => _instance;
+  static OrchRouteObserver get instance {
+    return OrchDependencyInjector.instance.get<OrchRouteObserver>(
+      ifNotRegistered: () => OrchDependencyInjector.instance.injectSingleton<OrchRouteObserver>(
+        () => OrchRouteObserver(),
+      ),
+    );
+  }
 
   Queue<Route<dynamic>?> routeStack = Queue<Route<dynamic>?>();
   Route<dynamic>? get currentRoute => routeStack.last;

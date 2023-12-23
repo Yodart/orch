@@ -1,9 +1,8 @@
 // ignore_for_file: always_specify_types
 
 import 'package:flutter/material.dart';
-
-import '../../core/orch.dart';
-import '../navigation/navigator.dart';
+import 'package:orch/core/orch.dart';
+import 'package:orch/modules/navigation/navigator.dart';
 
 enum NavigationMethod { push, pushAsRoot, replace }
 

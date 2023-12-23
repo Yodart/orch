@@ -1,10 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
-
-import '../../core/orch.dart';
-import '../../services/injection/dependency_injector.dart';
+import 'package:orch/core/orch.dart';
+import 'package:orch/services/injection/dependency_injector.dart';
 
 abstract class OrchController<T extends Object> with Disposable {
   OrchController() {
@@ -18,6 +17,8 @@ abstract class OrchController<T extends Object> with Disposable {
     injector.inject();
   }
 
+  @nonVirtual
+  @mustCallSuper
   void dispose() {
     injector.dispose();
   }
@@ -40,13 +41,17 @@ class OrchControllerInstanceInjector<T extends Object> {
   }
 
   void dispose() {
-    if (!GetIt.I.isRegistered<T>(instance: _instance, instanceName: _id)) return;
-    GetIt.I.unregister<T>(instance: _instance, instanceName: _id);
+    OrchDependencyInjector.instance.unregister<T>(_instance, _id);
   }
 }
 
 class OrchControllerInstance {
-  static T of<T extends OrchController>([String? id]) {
-    return GetIt.I.get<T>(instanceName: id);
+  static T of<T extends OrchController>(T Function() factory, [String? id]) {
+    return OrchDependencyInjector.instance.get<T>(
+      instanceName: id,
+      ifNotRegistered: () {
+        OrchDependencyInjector.instance.injectSingleton<T>(factory, id);
+      },
+    );
   }
 }
