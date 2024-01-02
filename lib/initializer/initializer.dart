@@ -24,7 +24,7 @@ class OrchAppInitializer extends StatefulWidget {
   final Future<void> Function()? preRunInitialization;
   final ThemeData? theme;
   final Widget? splash;
-  final Locale? locale;
+  final Locale? Function(BuildContext context)? locale;
   final Iterable<Locale> supportedLocales;
   final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
 
@@ -51,7 +51,7 @@ class _OrchAppInitializerState extends State<OrchAppInitializer> {
       navigatorObservers: [OrchRouteObserver.instance, ...widget.navigatorObservers ?? []],
       navigatorKey: OrchNavigator.instance.key,
       theme: widget.theme,
-      locale: widget.locale,
+      locale: widget.locale?.call(context),
       supportedLocales: widget.supportedLocales,
       localizationsDelegates: widget.localizationsDelegates,
       home: Builder(builder: (BuildContext context) {
