@@ -12,6 +12,9 @@ class OrchAppInitializer extends StatefulWidget {
     this.splash,
     this.theme,
     this.preRunInitialization,
+    this.locale,
+    this.supportedLocales = const <Locale>[Locale('en', 'US')],
+    this.localizationsDelegates,
   });
 
   final String? title;
@@ -21,6 +24,9 @@ class OrchAppInitializer extends StatefulWidget {
   final Future<void> Function()? preRunInitialization;
   final ThemeData? theme;
   final Widget? splash;
+  final Locale? locale;
+  final Iterable<Locale> supportedLocales;
+  final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
 
   Future<void> run() async {
     if (preRunInitialization != null) await preRunInitialization!();
@@ -45,6 +51,9 @@ class _OrchAppInitializerState extends State<OrchAppInitializer> {
       navigatorObservers: [OrchRouteObserver.instance, ...widget.navigatorObservers ?? []],
       navigatorKey: OrchNavigator.instance.key,
       theme: widget.theme,
+      locale: widget.locale,
+      supportedLocales: widget.supportedLocales,
+      localizationsDelegates: widget.localizationsDelegates,
       home: Builder(builder: (BuildContext context) {
         if (widget.contextEnabledInitialization != null) widget.contextEnabledInitialization!(context);
         return widget.splash ?? Container();
