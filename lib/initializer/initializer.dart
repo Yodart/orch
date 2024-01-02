@@ -28,9 +28,9 @@ class OrchAppInitializer extends StatefulWidget {
   final Iterable<Locale> supportedLocales;
   final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
 
-  Future<void> run() async {
+  Future<void> run([Widget Function(OrchAppInitializer initializer)? app]) async {
     if (preRunInitialization != null) await preRunInitialization!();
-    runApp(this);
+    runApp(app?.call(this) ?? this);
   }
 
   @override
