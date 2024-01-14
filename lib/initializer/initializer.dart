@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:orch/modules/navigation/route_observer.dart';
 import 'package:orch/orch.dart';
@@ -30,7 +32,12 @@ class OrchAppInitializer extends StatefulWidget {
 
   Future<void> run([Widget Function(OrchAppInitializer initializer)? app]) async {
     if (preRunInitialization != null) await preRunInitialization!();
-    runApp(app?.call(this) ?? this);
+    FlutterError.onError = Orch.instance.crashlytics.onFlutterError;
+    runZonedGuarded(() {
+      runApp(app?.call(this) ?? this);
+    }, (error, stackTrace) {
+      Orch.instance.crashlytics.onZonedGuardError(error, stackTrace);
+    });
   }
 
   @override
