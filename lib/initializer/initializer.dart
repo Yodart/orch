@@ -32,8 +32,9 @@ class OrchAppInitializer extends StatefulWidget {
 
   Future<void> run([Widget Function(OrchAppInitializer initializer)? app]) async {
     if (preRunInitialization != null) await preRunInitialization!();
-    FlutterError.onError = Orch.instance.crashlytics.onFlutterError;
     runZonedGuarded(() {
+      WidgetsFlutterBinding.ensureInitialized();
+      FlutterError.onError = Orch.instance.crashlytics.onFlutterError;
       runApp(app?.call(this) ?? this);
     }, (error, stackTrace) {
       Orch.instance.crashlytics.onZonedGuardError(error, stackTrace);
