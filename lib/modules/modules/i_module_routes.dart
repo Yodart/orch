@@ -11,9 +11,12 @@ abstract class IOrchModuleRoutes {
 
   dynamic contextProtectedCallback(dynamic callback) {
     if (_context == null) {
-      Orch.instance.logger.logHardWarning('Context Unprotected Route Navigation Attempt',
-          description:
-              'A route was attempted to be navigated to withtout the context of [CoreNavigator] being available, this is likely due to the [CoreNavigator] not being attached to the root [MaterialApp] at such point. \n');
+      Orch.instance.logger.logHardWarning(
+        'Context Unprotected Route Navigation Attempt',
+        description:
+            'A route was attempted to be navigated to withtout the context of [CoreNavigator] being available, this is likely due to the [CoreNavigator] not being attached to the root [MaterialApp] at such point. \n',
+      );
+
       return null;
     }
     return callback();
