@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:orch/orch.dart';
 
 class OrchException implements Exception {
@@ -9,7 +7,6 @@ class OrchException implements Exception {
   final dynamic exception;
 
   OrchException(this.runtimeType, this.stackTrace, this.exception) {
-    if (Platform.environment.containsKey('FLUTTER_TEST')) return;
     Orch.instance.crashlytics.onOrchException(exception, stackTrace);
   }
 }
